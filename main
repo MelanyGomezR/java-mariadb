@@ -1,0 +1,28 @@
+public class Main {
+    public static void main(String[] args) {
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+
+        // Insertar un nuevo usuario
+        Usuario usuario = new Usuario();
+        usuario.setNombre("Juan");
+        usuario.setEdad(30);
+        usuarioDAO.insertarUsuario(usuario);
+
+        // Obtener un usuario por ID
+        Usuario usuarioObtenido = usuarioDAO.obtenerUsuario(usuario.getId());
+        System.out.println("Usuario obtenido: " + usuarioObtenido.getNombre());
+
+        // Actualizar el usuario
+        usuarioObtenido.setEdad(31);
+        usuarioDAO.actualizarUsuario(usuarioObtenido);
+
+        // Obtener todos los usuarios
+        System.out.println("Lista de usuarios:");
+        for (Usuario u : usuarioDAO.obtenerTodosLosUsuarios()) {
+            System.out.println(u.getNombre() + " - " + u.getEdad());
+        }
+
+        // Eliminar el usuario
+        usuarioDAO.eliminarUsuario(usuarioObtenido.getId());
+    }
+}
